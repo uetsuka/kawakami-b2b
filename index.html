@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#241711">
+  <meta name="description" content="Explore Kawakami Foods' Okinawan tofu and okara range for Singapore retail, food service and distribution.">
+  <title>Kawakami Foods | Okinawan Tofu for Business</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Kawakami Foods, back to top"><img src="assets/logo.png" alt="川上食品" width="327" height="73"><small>KAWAKAMI FOODS</small></a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+    <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+      <a href="#about">About</a><a href="#products">Products</a><a href="#contact">Contact</a>
+      <a class="jp-link" href="https://www.kawakami-tohu.com/" target="_blank" rel="noopener noreferrer">Japanese site <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-roledescription="carousel" aria-label="Tofu making at Kawakami Foods">
+      <div class="hero-photo">
+        <img class="hero-image is-active" data-scene="0" src="assets/official-01.webp" alt="Kawakami Foods artisans preparing tofu in Okinawa" fetchpriority="high">
+        <img class="hero-image" data-scene="1" alt="" aria-hidden="true">
+      </div>
+      <div class="hero-heading">
+        <p class="eyebrow hero-kicker" id="hero-kicker">TRADITIONAL OKINAWAN TOFU</p>
+        <h1>A Taste of Okinawa.<br><em>For Your Business.</em></h1>
+        <p class="hero-overline" id="hero-overline">Made in Okinawa · Since 1958</p>
+      </div>
+      <div class="hero-partner-card">
+        <p class="hero-card-label">FOR BUSINESS PARTNERS</p>
+        <p class="hero-card-title">Okinawan tofu<br>for your menu.</p>
+        <p class="hero-card-detail">Explore our range for retail, food service and distribution.</p>
+      </div>
+      <div class="hero-heritage" role="text" aria-label="68 Years of Taste and Craftsmanship">
+        <div class="heritage-first"><span class="heritage-number">68</span><span class="heritage-years">Years</span><span class="heritage-taste">of Taste</span></div>
+        <div class="heritage-second"><span class="heritage-amp">&amp;</span><span class="heritage-craft">Craftsmanship</span></div>
+      </div>
+    </section>
+    <a class="hero-start" href="#products"><span>Explore Products</span><small>TOFU · OKARA</small></a>
+
+    <section class="about-section section" id="about">
+      <div class="about-image"><img src="assets/craft.png" alt="Kawakami Foods artisan working with tofu" loading="lazy"></div>
+      <div class="about-copy"><p class="eyebrow overline-line">OUR STORY</p><h2>Tofu-making in Okinawa since 1958.</h2><p>Since 1958, Kawakami Foods has made tofu in Okinawa with an emphasis on careful handling, dependable quality and the character of local food culture. In Okinawan kitchens, tofu is familiar everyday food—served simply, shared at the table and adapted across home and professional menus.</p><p>We welcome conversations with buyers, importers, wholesalers, retailers, restaurants and hotels exploring an Okinawan tofu range for Singapore.</p><a class="text-link" href="#contact">Meet Kawakami Foods <span aria-hidden="true">→</span></a></div>
+    </section>
+
+    <section class="products-section section" id="products">
+      <div class="section-heading"><div><p class="eyebrow overline-line">OUR RANGE</p><h2>Our Products</h2></div><p>Discover our tofu and okara range. Select a product for serving ideas, recipes and cooking times.</p></div>
+      <div class="filter-buttons" role="group" aria-label="Filter products"><button class="filter active" type="button" data-filter="all" aria-pressed="true">All Products</button><button class="filter" type="button" data-filter="tofu" aria-pressed="false">Tofu</button><button class="filter" type="button" data-filter="okara" aria-pressed="false">Okara</button></div>
+      <div id="product-groups" aria-live="polite"></div>
+
+    </section>
+
+    <section class="pathways-section section"><div class="pathways-head"><p class="eyebrow overline-line">FOR SINGAPORE BUSINESSES</p><h2>Tell us where Okinawan tofu could fit.</h2><p>Bring the flavours of Okinawa to your shelves, menus and customers.</p></div><div class="pathway-grid"><article><span>01</span><h3>Retail &amp; wholesale</h3><p>Begin a conversation about range fit, intended channel and market requirements.</p></article><article><span>02</span><h3>Restaurants &amp; hotels</h3><p>Share your menu context, service format and expected timeline with our business team.</p></article><article><span>03</span><h3>Import &amp; distribution</h3><p>Discuss Singapore-market opportunities, proposed volumes and commercial next steps.</p></article></div></section>
+
+    <section class="contact-section section" id="contact"><div class="contact-intro"><p class="eyebrow overline-line">BUSINESS CONTACT</p><h2>Start a Singapore business enquiry.</h2><p>Tell us about your company, channel and product interest. These details help our team understand your enquiry.</p><div class="contact-note"><strong>B2B enquiries</strong><p>Talk to us about product details, order quantities and delivery.</p></div></div><form class="contact-form" id="contact-form"><div class="form-grid"><label>Company <span aria-hidden="true">*</span><input name="company" type="text" autocomplete="organization" placeholder="Company name" required></label><label>Name <span aria-hidden="true">*</span><input name="name" type="text" autocomplete="name" placeholder="Your full name" required></label><label>Business email <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" placeholder="name@company.com" required></label><label>Country <span aria-hidden="true">*</span><input name="country" type="text" autocomplete="country-name" value="Singapore" required></label></div><fieldset><legend>Business type <span aria-hidden="true">*</span></legend><div class="choice-list"><label><input type="radio" name="business" value="Importer/distributor" required> Importer/distributor</label><label><input type="radio" name="business" value="Wholesaler"> Wholesaler</label><label><input type="radio" name="business" value="Retailer"> Retailer</label><label><input type="radio" name="business" value="Restaurant"> Restaurant</label><label><input type="radio" name="business" value="Hotel/catering"> Hotel/catering</label><label><input type="radio" name="business" value="Other"> Other</label></div></fieldset><fieldset><legend>Products of interest</legend><div class="choice-list product-choices" id="product-choices"></div></fieldset><div class="form-grid"><label>Intended channel / use<input name="use" type="text" placeholder="Retail, distribution, menu, hospitality…"></label><label>Estimated order or usage <span class="optional">Optional</span><input name="volume" type="text" placeholder="Approximate volume"></label><label>Timing <span class="optional">Optional</span><input name="timeline" type="text" placeholder="Desired launch or delivery timing"></label></div><label class="full-label">Enquiry / additional details<textarea name="details" rows="5" placeholder="Share your market context, questions or requirements"></textarea></label><label class="consent"><input type="checkbox" required><span>I agree that Kawakami Foods may use the information provided to respond to this business enquiry.</span></label><button class="button button-primary submit-button" type="submit">Submit Business Enquiry</button><p class="form-demo-note">Demo form — messages are not sent.</p><div class="form-result" id="form-result" role="status" hidden></div></form></section>
+  </main>
+
+  <footer class="site-footer"><div><p class="footer-brand">KAWAKAMI FOODS</p><p>For Singapore-market retail, food service and distribution enquiries, speak with our business team.</p></div><nav aria-label="Footer navigation"><a href="#about">About</a><a href="#products">Products</a><a href="#contact">Business Contact</a><a href="https://www.kawakami-tohu.com/" target="_blank" rel="noopener noreferrer">Japanese site ↗</a></nav><p class="copyright">© Kawakami Foods. English B2B website test site.</p></footer>
+
+  <a class="sticky-contact" id="sticky-contact" href="#contact" aria-label="Contact Kawakami Foods about a business enquiry">Contact Us</a>
+
+  <dialog id="product-dialog" class="product-dialog" aria-labelledby="dialog-title"><div class="dialog-layout"><div class="dialog-photo" id="dialog-photo"></div><div class="dialog-copy"><button class="dialog-close" id="dialog-close" type="button" aria-label="Close product details">×</button><p class="eyebrow">SERVING &amp; USAGE IDEAS</p><h2 id="dialog-title"></h2><p id="dialog-description"></p><div id="dialog-ideas"></div><button class="button button-primary" type="button" id="dialog-enquire">Enquire About This Product</button></div></div></dialog>
+</body>
+</html>
