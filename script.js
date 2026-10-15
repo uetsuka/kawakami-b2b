@@ -6,26 +6,189 @@ const slides = [
   { label: 'TRADITIONAL OKINAWAN TOFU', overline: 'Made in Okinawa · Since 1958', image: 'assets/official-07.webp', alt: 'Shima tofu moving through the production line' }
 ];
 const products = [
-  { name: 'Shima Tofu', category: 'tofu', image: 'assets/shima.webp', description: 'Firm Okinawan tofu that holds its shape in stir-fries and simmered dishes.', ideas: [['Stir-fried vegetables', 'Use the firm texture in a vegetable stir-fry.'], ['Simmered dishes', 'Add pieces to a seasoned broth or stew.'], ['Menu discussion', 'Bring Okinawan tofu to your retail range or restaurant menu.']] },
-  { name: 'Yushi Tofu', category: 'tofu', image: 'assets/yushi.webp', description: 'Soft tofu curds with a delicate texture and rich soybean flavour.', ideas: [['Original warm bowl', 'Serve warm in a simple bowl, keeping the presentation understated.'], ['Egg topping', 'Add an egg topping as a serving suggestion.'], ['Savoury toppings', 'Choose toppings that suit your menu and local preferences.']] },
-  { name: 'Atsuage', category: 'tofu', image: 'assets/atsuage.webp', description: 'Thick fried tofu, golden outside and soft inside. Try it pan-seared as a satisfying tofu steak.', ideas: [['Tofu steak', 'Pan-sear and serve with a plant-based mushroom sauce for vegan and vegetarian menus.']] },
-  { name: 'Silken & Soft Tofu', category: 'tofu', image: 'assets/silken.webp', description: 'Smooth-textured tofu to enjoy chilled, in soups or in salads.', ideas: [['Chilled serving', 'Serve simply with toppings of your choice.'], ['Soup', 'Add gently to a light soup.'], ['Salad', 'Use as a soft-textured addition to a salad.']] },
-  { name: 'Jimami Tofu', category: 'tofu', image: 'assets/jimami.webp', description: 'Okinawan peanut tofu with a springy texture and a gently sweet flavour.', ideas: [['Small plate', 'Present as a distinctive Okinawan small dish.'], ['Dessert idea', 'Explore a lightly sweet menu presentation.']], note: 'Contains peanuts. Made from peanuts rather than soybeans.' },
-  { name: 'Aburaage', category: 'tofu', image: 'assets/aburaage.png', description: 'Thin fried tofu that adds richness to soups and simmered dishes.', ideas: [['Soup', 'Add to soup for flavour and texture.'], ['Simmered dishes', 'Combine with vegetables in a seasoned broth.']] },
-  { name: 'Dried Okara', category: 'okara', image: 'assets/dried-okara.png', description: 'Dried soybean pulp from tofu production, supplied as a food ingredient.', ideas: [['Food ingredient', 'Use in savoury sides and vegetable dishes.'], ['Product development', 'Explore new recipes with this versatile soybean ingredient.']] },
-  { name: 'Okara Spoon', category: 'okara', image: 'assets/okara-spoon.jpg', description: 'An edible spoon made with okara from shima tofu production, for desserts and tasting portions.', ideas: [['Food-service pairing', 'Pair with desserts or tasting portions.'], ['Retail concept', 'An edible addition to a dessert selection.']], note: 'Contains wheat, egg and soy.' }
+  { name: 'Shima Tofu', category: 'tofu', image: 'assets/shima.webp', description: "Firm Okinawan tofu for a quick pan-fry. Season to taste, scatter with spring onions, and add cabbage or carrots if you like.", ideas: [['Stir-fried vegetables', 'Use the firm texture in a vegetable stir-fry.'], ['Simmered dishes', 'Add pieces to a seasoned broth or stew.'], ['Menu discussion', 'Bring Okinawan tofu to your retail range or restaurant menu.']] },
+  { name: 'Yushi Tofu', category: 'tofu', image: 'assets/yushi.webp', description: "Soft tofu curds for a quick warm meal. Enjoy with an Okara Spoon and optional spring onions and grated ginger.", ideas: [['Original warm bowl', 'Serve warm in a simple bowl, keeping the presentation understated.'], ['Egg topping', 'Add an egg topping as a serving suggestion.'], ['Savoury toppings', 'Choose toppings that suit your menu and local preferences.']] },
+  { name: 'Atsuage', category: 'tofu', image: 'assets/atsuage.webp', description: "Pan-seared tofu steak with a simple soy sauce, water and sugar sauce, made with plant-based ingredients.", ideas: [['Tofu steak', 'Pan-sear and serve with a plant-based mushroom sauce for vegan and vegetarian menus.']] },
+  { name: 'Silken & Soft Tofu', category: 'tofu', image: 'assets/silken.webp', description: "Smooth tofu served chilled with spring onions, grated ginger and your preferred dressing.", ideas: [['Chilled serving', 'Serve simply with toppings of your choice.'], ['Soup', 'Add gently to a light soup.'], ['Salad', 'Use as a soft-textured addition to a salad.']] },
+  { name: 'Jimami Tofu', category: 'tofu', image: 'assets/jimami.webp', description: "A smooth, springy Okinawan peanut dessert to enjoy with a sweet sauce.", ideas: [['Small plate', 'Present as a distinctive Okinawan small dish.'], ['Dessert idea', 'Explore a lightly sweet menu presentation.']], note: 'Contains peanuts. Made from peanuts rather than soybeans.' },
+  { name: 'Aburaage', category: 'tofu', image: 'assets/aburaage.png', description: "Thin fried tofu that soaks up the flavours of laksa-style coconut soup.", ideas: [['Soup', 'Add to soup for flavour and texture.'], ['Simmered dishes', 'Combine with vegetables in a seasoned broth.']] },
+  { name: 'Dried Okara', category: 'okara', image: 'assets/dried-okara.png', description: "Okara from Okinawan tofu-making for bread and cookies. Replace part of the wheat flour using a suitable recipe.", ideas: [['Food ingredient', 'Use in savoury sides and vegetable dishes.'], ['Product development', 'Explore new recipes with this versatile soybean ingredient.']] },
+  { name: 'Okara Spoon', category: 'okara', image: 'assets/okara-spoon.jpg', description: "An edible spoon made with okara from tofu-making. Enjoy with dessert and explore food and ingredients together.", ideas: [['Food-service pairing', 'Pair with desserts or tasting portions.'], ['Retail concept', 'An edible addition to a dessert selection.']], note: 'Contains wheat, egg and soy.' }
 ];
 
 // Editorial serving concepts, not manufacturer-verified preparation instructions.
 const servingConcepts = [
-  { title: 'Okinawan-style tofu stir-fry', time: '15–20 min', ingredients: 'Shima tofu, cabbage, carrots, spring onions, oil and your preferred seasoning.', steps: [['Prepare', 'Drain the tofu and cut into bite-sized pieces. Slice the vegetables.'], ['Stir-fry', 'Pan-fry the tofu in a little oil until lightly golden. Add the vegetables and cook until tender.'], ['Finish', 'Season to taste, scatter with spring onions and serve warm.']], style: 'stirfry', use: 'A vegetable-rich main or a sharing dish for a set menu.' },
-  { title: 'A warm bowl of Yushi Tofu', time: '5–10 min', ingredients: 'Yushi tofu with its liquid, spring onions and grated ginger, if desired.', steps: [['Warm gently', 'Transfer the tofu and its liquid to a saucepan. Heat gently until hot, without breaking up the curds.'], ['Spoon into a bowl', 'Ladle carefully into a serving bowl to preserve the soft curds.'], ['Add toppings', 'Finish with spring onions and a little ginger. Serve warm.']], style: 'curds', use: 'A comforting breakfast side or a simple soup course.' },
-  { title: 'Atsuage steak with mushroom sauce', time: '15–20 min', ingredients: 'Atsuage, mushrooms, garlic, vegetable oil, soy sauce, water, a little sugar and vegetables to serve. Choose plant-based sauces and seasonings.', steps: [['Prepare', 'Pat the atsuage dry, keeping it in thick steak-sized portions. Slice the mushrooms and garlic; prepare the vegetables.'], ['Pan-sear', 'Heat a little vegetable oil in a frying pan. Sear the atsuage on both sides until golden and heated through. Set aside and keep warm.'], ['Sauce & serve', 'Sauté the garlic and mushrooms in the pan. Add soy sauce, a splash of water and a little sugar; simmer briefly. Spoon over the tofu steaks and serve with vegetables.']], style: 'steak', use: 'A tofu steak with a golden crust and savoury mushroom sauce, for plant-based menus.', extra: 'For a plant-based version, use vegetable oil and season with soy sauce instead of butter, fish stock or oyster sauce.' },
-  { title: 'Chilled tofu with fresh toppings', time: '5 min', ingredients: 'Chilled silken or soft tofu, spring onions, grated ginger and a dressing of your choice.', steps: [['Portion', 'Drain the chilled tofu gently and divide between small plates.'], ['Add toppings', 'Arrange spring onions and a little grated ginger on top.'], ['Dress and serve', 'Add dressing just before serving and enjoy promptly.']], style: 'silken', use: 'A light starter or a small side dish.' },
-  { title: 'Jimami Tofu, simply plated', time: '5 min', ingredients: 'Jimami tofu and a sauce of your choice.', steps: [['Prepare', 'Prepare small serving plates and your chosen sauce.'], ['Plate', 'Carefully turn out or portion the tofu onto a small plate.'], ['Finish', 'Spoon a little sauce over the tofu and serve as a small dish.']], style: 'jimami', use: 'An Okinawan small plate for a tasting menu. Contains peanuts.' },
-  { title: 'Aburaage & vegetable soup', time: '10–15 min', ingredients: 'Aburaage, mushrooms, leafy greens and a broth of your choice.', steps: [['Slice', 'Cut the aburaage into thin strips and prepare the vegetables.'], ['Simmer', 'Bring the broth to a simmer. Add mushrooms and aburaage; cook until heated through.'], ['Finish', 'Add leafy greens and cook until tender. Adjust seasoning and serve.']], style: 'strips', use: 'An easy soup course or an accompaniment to a rice set.' },
-  { title: 'Savoury okara with vegetables', time: '15–20 min*', ingredients: 'Dried okara, finely chopped carrots and mushrooms, broth and seasoning.', steps: [['Prepare the okara', 'Rehydrate the dried okara with broth, using the ratio on the pack.'], ['Cook the vegetables', 'Sauté the chopped vegetables in a little oil until softened.'], ['Combine', 'Add the prepared okara and seasoning. Cook gently, stirring and adding broth as needed to keep the mixture moist.']], style: 'okara', use: 'A small savoury side dish for a set menu.', extra: '*Plus rehydration time.' },
-  { title: 'An edible spoon for dessert', time: '2–5 min', ingredients: 'Okara Spoon and small portions of your favourite dessert.', steps: [['Portion the dessert', 'Arrange a small dessert portion in a bowl or tasting cup.'], ['Add the spoon', 'Place the Okara Spoon alongside the dessert just before serving.'], ['Present', 'Invite guests to enjoy the dessert, then the edible spoon.']], style: 'dessert', use: 'A dessert pairing or a tasting-event presentation. Contains wheat, egg and soy.' }
+  {
+    "title": "Quick Okinawan tofu stir-fry",
+    "time": "3–10 min",
+    "ingredients": "Shima tofu, oil, your preferred seasoning and spring onions. Cabbage and carrots are optional.",
+    "steps": [
+      [
+        "Prepare",
+        "Drain the tofu and cut into bite-sized pieces."
+      ],
+      [
+        "Pan-fry",
+        "Pan-fry in a little oil until lightly golden. Add cabbage or carrots if you like and cook until tender."
+      ],
+      [
+        "Finish",
+        "Season to taste and scatter with spring onions."
+      ]
+    ],
+    "style": "stirfry",
+    "use": "A quick main or side dish for everyday meals."
+  },
+  {
+    "title": "Warm Yushi Tofu, ready to enjoy",
+    "time": "3–5 min",
+    "ingredients": "Yushi tofu, an Okara Spoon and, if desired, spring onions and grated ginger.",
+    "steps": [
+      [
+        "Warm",
+        "Follow the heating instructions on the pack. Heat in the original container only if the pack specifies that it is suitable; otherwise use a microwave-safe dish."
+      ],
+      [
+        "Add toppings",
+        "Add spring onions and grated ginger if you like."
+      ],
+      [
+        "Enjoy",
+        "Enjoy straight from the suitable serving container with an Okara Spoon."
+      ]
+    ],
+    "style": "curds",
+    "use": "An easy warm meal for busy parents, including households with a baby.",
+    "extra": "Preparation time is an estimate; follow the heating time and method on the pack."
+  },
+  {
+    "title": "Quick plant-based atsuage steak",
+    "time": "3–10 min",
+    "ingredients": "Atsuage, vegetable oil, soy sauce, water and a little sugar.",
+    "steps": [
+      [
+        "Prepare",
+        "Pat the atsuage dry and keep it in thick steak-sized portions."
+      ],
+      [
+        "Pan-sear",
+        "Heat a little vegetable oil and sear both sides until golden and heated through."
+      ],
+      [
+        "Sauce & serve",
+        "Simmer soy sauce, water and a little sugar into a sauce, then spoon over the atsuage."
+      ]
+    ],
+    "style": "steak",
+    "use": "A simple tofu steak for vegan and vegetarian menus.",
+    "extra": "Use plant-based sauces and seasonings, without butter, fish stock or oyster sauce."
+  },
+  {
+    "title": "Chilled tofu with fresh toppings",
+    "time": "5 min",
+    "ingredients": "Chilled silken or soft tofu, spring onions, grated ginger and your preferred dressing.",
+    "steps": [
+      [
+        "Portion",
+        "Gently drain the chilled tofu and place on small plates."
+      ],
+      [
+        "Top",
+        "Add spring onions and grated ginger."
+      ],
+      [
+        "Serve",
+        "Add your preferred dressing just before serving."
+      ]
+    ],
+    "style": "silken",
+    "use": "A light starter or small side dish."
+  },
+  {
+    "title": "An Okinawan peanut dessert",
+    "time": "5 min",
+    "ingredients": "Jimami tofu and a sweet sauce of your choice.",
+    "steps": [
+      [
+        "Prepare",
+        "Prepare small dessert plates and your chosen sweet sauce."
+      ],
+      [
+        "Plate",
+        "Carefully portion the tofu onto each plate."
+      ],
+      [
+        "Finish",
+        "Add a little sweet sauce and enjoy its smooth, springy texture."
+      ]
+    ],
+    "style": "jimami",
+    "use": "An Okinawan sweet treat after a meal or during a break. Contains peanuts."
+  },
+  {
+    "title": "Aburaage in laksa-style soup",
+    "time": "5–10 min",
+    "ingredients": "Aburaage, prepared laksa-style coconut soup, noodles and vegetables.",
+    "steps": [
+      [
+        "Slice",
+        "Cut the aburaage into bite-sized pieces."
+      ],
+      [
+        "Warm",
+        "Add to prepared laksa-style coconut soup and heat through."
+      ],
+      [
+        "Serve",
+        "Pair with noodles and cooked vegetables, letting the aburaage soak up the soup."
+      ]
+    ],
+    "style": "strips",
+    "use": "A familiar Singapore-inspired soup with an Okinawan tofu twist.",
+    "extra": "Time assumes prepared soup; allow additional time for noodles and vegetables as needed."
+  },
+  {
+    "title": "Bake with okara: bread & cookies",
+    "time": "Varies by recipe",
+    "ingredients": "Dried okara, flour and the other ingredients in your chosen bread or cookie recipe.",
+    "steps": [
+      [
+        "Choose a recipe",
+        "Choose a bread or cookie recipe designed to include dried okara."
+      ],
+      [
+        "Mix",
+        "Replace part of the wheat flour with dried okara according to the recipe, adjusting the liquid as directed."
+      ],
+      [
+        "Bake",
+        "Shape and bake according to the recipe."
+      ]
+    ],
+    "style": "okara",
+    "use": "Bring okara from Okinawan tofu-making into everyday baking."
+  },
+  {
+    "title": "An edible spoon to enjoy together",
+    "time": "2–5 min",
+    "ingredients": "Okara Spoon and your favourite dessert.",
+    "steps": [
+      [
+        "Portion",
+        "Place a small dessert portion in a bowl or tasting cup."
+      ],
+      [
+        "Pair",
+        "Add the Okara Spoon just before serving."
+      ],
+      [
+        "Enjoy together",
+        "Enjoy the dessert and edible spoon, and talk together about the ingredients and where food comes from."
+      ]
+    ],
+    "style": "dessert",
+    "use": "Made with okara from tofu-making: a playful way for families to explore food. Contains wheat, egg and soy."
+  }
 ];
 function servingIllustration(concept) {
   const golden = ['golden', 'strips'].includes(concept.style);
