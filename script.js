@@ -307,7 +307,8 @@ dialog.addEventListener('close', () => { if (lastTrigger?.isConnected) lastTrigg
 document.querySelector('#dialog-enquire').addEventListener('click', () => { dialog.close(); goToEnquiry(currentProductIndex); });
 function goToEnquiry(index) {
   const choice = document.querySelector(`[data-choice="${index}"]`);
-  if (choice) choice.checked = true;
+  if (choice) { choice.checked = true; choice.dispatchEvent(new Event('change', { bubbles: true })); }
+  if (location.hash !== '#contact') history.pushState(null, '', '#contact');
   document.querySelector('#contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
   setTimeout(() => document.querySelector('[name="company"]').focus({ preventScroll: true }), 500);
 }
