@@ -336,6 +336,6 @@ form.addEventListener('submit', event => {
   if (!form.reportValidity()) return;
   const result = document.querySelector('#form-result');
   result.hidden = false;
-  result.textContent = 'Demo complete — no message was sent. To contact us, visit our Japanese website.';
+  result.innerHTML = 'Please send your enquiry through our <a href="https://www-kawakami--tohu-com.translate.goog/contact.php?_x_tr_sl=ja&amp;_x_tr_tl=en&amp;_x_tr_hl=en" target="_blank" rel="noopener noreferrer">official contact form ↗</a>.';
   result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 });
