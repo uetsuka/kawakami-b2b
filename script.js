@@ -331,11 +331,15 @@ const stickyObserver = new IntersectionObserver(entries => {
 });
 
 const form = document.querySelector('#contact-form');
-form.addEventListener('submit', event => {
-  event.preventDefault();
-  if (!form.reportValidity()) return;
-  const result = document.querySelector('#form-result');
-  result.hidden = false;
-  result.innerHTML = 'Please send your enquiry through our <a href="https://www-kawakami--tohu-com.translate.goog/contact.php?_x_tr_sl=ja&amp;_x_tr_tl=en&amp;_x_tr_hl=en" target="_blank" rel="noopener noreferrer">official contact form ↗</a>.';
-  result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+let enquiryId;let enquirySaving=false;
+form.addEventListener('submit',async event=>{
+ event.preventDefault();if(enquirySaving||!form.reportValidity())return;
+ const result=document.querySelector('#form-result'),button=form.querySelector('[type="submit"]');
+ enquiryId ||=crypto.randomUUID();const data=new FormData(form);
+ const payload={id:enquiryId,company:data.get('company')||'',name:data.get('name')||'',email:data.get('email')||'',country:data.get('country')||'',business:data.get('business')||'',products:data.getAll('product'),use:data.get('use')||'',volume:data.get('volume')||'',timeline:data.get('timeline')||'',details:data.get('details')||'',consent:data.get('consent')==='on',website:data.get('website')||''};
+ enquirySaving=true;button.disabled=true;button.textContent='Sending…';result.hidden=false;result.textContent='';
+ try{const r=await fetch('https://kawakami-business-survey.chiekouetsuka.chatgpt.site/api/enquiries',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const response=await r.json();if(!r.ok||response.saved!==true)throw Error(response.error||'Please try again.');
+ result.textContent='Thank you. Your business enquiry has been received. Reference: '+response.id;button.textContent='Enquiry received';form.querySelectorAll('input,textarea').forEach(input=>input.disabled=true);
+ }catch(error){result.textContent=error.message||'We could not save your enquiry. Please try again.';enquirySaving=false;button.disabled=false;button.textContent='Submit Business Enquiry';}
+ result.scrollIntoView({behavior:'smooth',block:'nearest'});
 });
