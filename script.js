@@ -1,3 +1,4 @@
+import {installLeaveGuard} from './leave-guard.js';
 const slides = [
   { label: 'TRADITIONAL OKINAWAN TOFU', overline: 'Made in Okinawa · Since 1958', image: 'assets/official-01.webp', alt: 'Kawakami Foods artisans preparing tofu in Okinawa' },
   { label: 'TRADITIONAL OKINAWAN TOFU', overline: 'Made in Okinawa · Since 1958', image: 'assets/official-02.webp', alt: 'Fresh tofu curds being placed in trays' },
@@ -331,15 +332,23 @@ const stickyObserver = new IntersectionObserver(entries => {
 });
 
 const form = document.querySelector('#contact-form');
-let enquiryId;let enquirySaving=false;
+let enquiryId;let enquirySaving=false,enquirySaved=false,draftBody='',draftRevision=0,draftTimer,draftRetry;
+const draftEndpoint='https://kawakami-business-survey.chiekouetsuka.chatgpt.site/api/enquiries/draft';
+const draftStatus=document.createElement('p');draftStatus.setAttribute('role','status');draftStatus.setAttribute('aria-live','polite');form.prepend(draftStatus);
 form.addEventListener('submit',async event=>{
  event.preventDefault();if(enquirySaving||!form.reportValidity())return;
  const result=document.querySelector('#form-result'),button=form.querySelector('[type="submit"]');
- enquiryId ||=crypto.randomUUID();const data=new FormData(form);
- const payload={id:enquiryId,company:data.get('company')||'',name:data.get('name')||'',email:data.get('email')||'',country:data.get('country')||'',business:data.get('business')||'',products:data.getAll('product'),use:data.getAll('use').join('; '),volume:data.get('volume')||'',timeline:'',details:[data.get('packFormat')?'Preferred pack format: '+data.get('packFormat'):'',data.get('needs')?'Customer needs / menu opportunities: '+data.get('needs'):'',data.get('details')?'Other ideas / questions: '+data.get('details'):''].filter(Boolean).join('\n\n'),consent:data.get('consent')==='on',website:data.get('website')||''};
+ enquiryId ||=crypto.randomUUID();const payload=enquiryPayload();
  enquirySaving=true;button.disabled=true;button.textContent='Sending…';result.hidden=false;result.textContent='';
  try{const r=await fetch('https://kawakami-business-survey.chiekouetsuka.chatgpt.site/api/enquiries',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const response=await r.json();if(!r.ok||response.saved!==true)throw Error(response.error||'Please try again.');
- result.textContent='Thank you. Your business enquiry has been received. Reference: '+response.id;button.textContent='Enquiry received';form.querySelectorAll('input,textarea').forEach(input=>input.disabled=true);
+ enquirySaved=true;clearTimeout(draftTimer);clearTimeout(draftRetry);draftStatus.textContent='';result.textContent='Thank you. Your business enquiry has been received. Reference: '+response.id;button.textContent='Enquiry received';form.querySelectorAll('input,textarea,select').forEach(input=>input.disabled=true);
  }catch(error){result.textContent=error.message||'We could not save your enquiry. Please try again.';enquirySaving=false;button.disabled=false;button.textContent='Submit Business Enquiry';}
  result.scrollIntoView({behavior:'smooth',block:'nearest'});
 });
+
+function enquiryPayload(){const data=new FormData(form);return {id:enquiryId,company:data.get('company')||'',name:data.get('name')||'',email:data.get('email')||'',country:data.get('country')||'',business:data.get('business')||'',products:data.getAll('product'),use:data.getAll('use').join('; '),volume:data.get('volume')||'',timeline:'',details:[data.get('packFormat')?'Preferred pack format: '+data.get('packFormat'):'',data.get('needs')?'Customer needs / menu opportunities: '+data.get('needs'):'',data.get('details')?'Other ideas / questions: '+data.get('details'):''].filter(Boolean).join('\n\n'),consent:data.get('consent')==='on',website:data.get('website')||''};}
+function hasDraftInput(p){return p.products.length||['company','name','email','business','use','volume','timeline','details'].some(k=>p[k]?.trim());}
+function flushEnquiry(){if(enquirySaved||!draftBody)return;const blob=new Blob([draftBody],{type:'application/json'});if(!navigator.sendBeacon(draftEndpoint,blob))void fetch(draftEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:draftBody,keepalive:true}).catch(()=>{});}
+async function saveEnquiryDraft(body){if(enquirySaved)return;draftStatus.textContent='Saving progress…';try{const r=await fetch(draftEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body,keepalive:true});if(!r.ok)throw Error();if(body===draftBody&&!enquirySaved)draftStatus.textContent='Progress saved';}catch{if(body===draftBody&&!enquirySaved){draftStatus.textContent='Progress could not be saved. Retrying… Please keep this page open.';draftRetry=setTimeout(()=>saveEnquiryDraft(body),5000);}}}
+function captureEnquiry(){if(enquirySaved)return;const p=enquiryPayload();if(!hasDraftInput(p)&&!enquiryId)return;enquiryId ||=crypto.randomUUID();p.id=enquiryId;draftRevision=Math.max(Date.now(),draftRevision+1);draftBody=JSON.stringify({...p,revision:draftRevision});clearTimeout(draftTimer);clearTimeout(draftRetry);const body=draftBody;draftTimer=setTimeout(()=>saveEnquiryDraft(body),700);}
+form.addEventListener('input',captureEnquiry);form.addEventListener('change',captureEnquiry);installLeaveGuard({active:()=>!enquirySaved&&!!draftBody,flush:flushEnquiry});
