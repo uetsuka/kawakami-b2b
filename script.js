@@ -333,14 +333,15 @@ const stickyObserver = new IntersectionObserver(entries => {
 
 const form = document.querySelector('#contact-form');
 let enquiryId;let enquirySaving=false,enquirySaved=false,draftBody='',draftRevision=0,draftTimer,draftRetry;
-const draftEndpoint='/api/enquiries/draft';
+const apiBase=location.hostname==='uetsuka.github.io'?'https://kawakami-business-survey.chiekouetsuka.chatgpt.site':'';
+const draftEndpoint=apiBase+'/api/enquiries/draft';
 const draftStatus=document.createElement('p');draftStatus.setAttribute('role','status');draftStatus.setAttribute('aria-live','polite');form.prepend(draftStatus);
 form.addEventListener('submit',async event=>{
  event.preventDefault();if(enquirySaving||!form.reportValidity())return;
  const result=document.querySelector('#form-result'),button=form.querySelector('[type="submit"]');
  enquiryId ||=crypto.randomUUID();const payload=enquiryPayload();
  enquirySaving=true;button.disabled=true;button.textContent='Sending…';result.hidden=false;result.textContent='';
- try{const r=await fetch('/api/enquiries',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const response=await r.json();if(!r.ok||response.saved!==true)throw Error(response.error||'Please try again.');
+ try{const r=await fetch(apiBase+'/api/enquiries',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const response=await r.json();if(!r.ok||response.saved!==true)throw Error(response.error||'Please try again.');
  enquirySaved=true;clearTimeout(draftTimer);clearTimeout(draftRetry);draftStatus.textContent='';result.textContent='Thank you. Your business enquiry has been received. Reference: '+response.id;button.textContent='Enquiry received';form.querySelectorAll('input,textarea,select').forEach(input=>input.disabled=true);
  }catch(error){result.textContent=error.message||'We could not save your enquiry. Please try again.';enquirySaving=false;button.disabled=false;button.textContent='Submit Business Enquiry';}
  result.scrollIntoView({behavior:'smooth',block:'nearest'});
